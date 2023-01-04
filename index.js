@@ -994,9 +994,9 @@ cartsection.classList.add('d-none');
 
 
 const homebtn = document.querySelector("#homebtn");
-const menbtn = document.querySelector("#menbtn");
-const womenbtn = document.querySelector("#womenbtn");
-const kidbtn = document.querySelector("#kidbtn");
+const menbtns = document.querySelectorAll(".menbtn");
+const womenbtns = document.querySelectorAll(".womenbtn");
+const kidbtns = document.querySelectorAll(".kidbtn");
 const cartbtn = document.querySelector("#cartbtn");
 
 
@@ -1010,36 +1010,46 @@ homebtn.addEventListener('click', () => {
     cartsection.classList.add('d-none');
 })
 
-menbtn.addEventListener('click', () => {
-    if (mensection.classList.contains('d-none')) {
-        mensection.classList.remove('d-none');
-    }
-    homesection.classList.add('d-none');
-    womensection.classList.add('d-none');
-    kidsection.classList.add('d-none');
-    cartsection.classList.add('d-none');
 
+menbtns.forEach( function(menbtn){
+    menbtn.addEventListener('click', () => {
+        if (mensection.classList.contains('d-none')) {
+            mensection.classList.remove('d-none');
+        }
+        homesection.classList.add('d-none');
+        womensection.classList.add('d-none');
+        kidsection.classList.add('d-none');
+        cartsection.classList.add('d-none');
+    
+    })
 })
 
-womenbtn.addEventListener('click', () => {
-    if (womensection.classList.contains('d-none')) {
-        womensection.classList.remove('d-none');
-    }
-    homesection.classList.add('d-none');
-    mensection.classList.add('d-none');
-    kidsection.classList.add('d-none');
-    cartsection.classList.add('d-none');
 
+womenbtns.forEach( function(womenbtn){
+    womenbtn.addEventListener('click', () => {
+        if (womensection.classList.contains('d-none')) {
+            womensection.classList.remove('d-none');
+        }
+        homesection.classList.add('d-none');
+        mensection.classList.add('d-none');
+        kidsection.classList.add('d-none');
+        cartsection.classList.add('d-none');
+    
+    })
 })
-kidbtn.addEventListener('click', () => {
-    if (kidsection.classList.contains('d-none')) {
-        kidsection.classList.remove('d-none');
-    }
-    homesection.classList.add('d-none');
-    mensection.classList.add('d-none');
-    womensection.classList.add('d-none');
-    cartsection.classList.add('d-none');
 
+kidbtns.forEach(function(kidbtn){
+    kidbtn.addEventListener('click', () => {
+        if (kidsection.classList.contains('d-none')) {
+            kidsection.classList.remove('d-none');
+        }
+        homesection.classList.add('d-none');
+        mensection.classList.add('d-none');
+        womensection.classList.add('d-none');
+        cartsection.classList.add('d-none');
+    
+    })
+    
 })
 
 
