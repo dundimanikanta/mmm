@@ -1102,7 +1102,7 @@ if (kidprodiv) {
 
 
 var cart = [];
-var cartwithquantity=[];
+var cartwithquantity = [];
 
 
 
@@ -1112,15 +1112,15 @@ var cartwithquantity=[];
 
 const displaycartitems = document.querySelector('#cartitems');
 
-const totalcartitems=()=>{
+const totalcartitems = () => {
 
-   
-        if (cart.length == 0) {
-            displaycartitems.innerText =" "
-        } else {
-            displaycartitems.innerText = `${cart.length}`
-        }
-   
+
+    if (cart.length == 0) {
+        displaycartitems.innerText = " "
+    } else {
+        displaycartitems.innerText = `${cart.length}`
+    }
+
 }
 
 
@@ -1132,19 +1132,18 @@ const add = (idx) => {
         menDataSet.forEach(function (el) {
             if (el.id === idx) {
                 var x;
-                if(cart.includes(el))
-                {
-                   cartwithquantity[cart.indexOf(el)].quantity+=1;  
+                if (cart.includes(el)) {
+                    cartwithquantity[cart.indexOf(el)].quantity += 1;
                 }
-                else{
+                else {
                     cart.push(el);
-                     x=el;
-                    x.quantity=1;
+                    x = el;
+                    x.quantity = 1;
                     cartwithquantity.push(x);
                 }
-                
-               
-             
+
+
+
             }
         });
     }
@@ -1152,19 +1151,18 @@ const add = (idx) => {
         womenDataSet.forEach(function (el) {
             if (el.id === idx) {
                 var x;
-                if(cart.includes(el))
-                {
-                   cartwithquantity[cart.indexOf(el)].quantity+=1;  
+                if (cart.includes(el)) {
+                    cartwithquantity[cart.indexOf(el)].quantity += 1;
                 }
-                else{
+                else {
                     cart.push(el);
-                     x=el;
-                    x.quantity=1;
+                    x = el;
+                    x.quantity = 1;
                     cartwithquantity.push(x);
                 }
-                
-                
-             
+
+
+
             }
         });
     }
@@ -1172,81 +1170,66 @@ const add = (idx) => {
         kidDataSet.forEach(function (el) {
             if (el.id === idx) {
                 var x;
-                if(cart.includes(el))
-                {
-                   cartwithquantity[cart.indexOf(el)].quantity+=1;  
+                if (cart.includes(el)) {
+                    cartwithquantity[cart.indexOf(el)].quantity += 1;
                 }
-                else{
+                else {
                     cart.push(el);
-                     x=el;
-                    x.quantity=1;
+                    x = el;
+                    x.quantity = 1;
                     cartwithquantity.push(x);
                 }
-                
-                
-             
+
+
+
             }
         });
     }
 
-    // if (idx > 100 && idx < 132) {
-    //     womenDataSet.forEach(function (el) {
-    //         if (el.id === idx) {
-    //             cart.push(el);
-    //             price=price+el.price;
-              
-    //         }
-    //     });
-    // }
+    
     checkTotalPrice();
     totalcartitems();
     displayincart();
 }
 
 
-const cartaddeditems=document.querySelector('#cartaddeditems');
+const cartaddeditems = document.querySelector('#cartaddeditems');
 
-const displayincart=()=>
-{
-    // const c = document.createElement('div');
+const displayincart = () => {
 
-    //     c.innerHTML = `<div class="card col-lg-4 col-sm-10 col-md-4 px-0" ><img class="img-fluid" src="${el.imageUrl}" alt="Card image cap" /><div class="card-body"><h5 class="card-title"> ${el.name} </h5><h6 class="card-text priceClass"><span>&#x20b9;</span>${el.price}</h6><p class="ratingClass">${el.rating} &nbsp;<span>&#9733;</span></p> <button class="delToCartBtn" id="${el.id}"  onclick='del(${el.id})'><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Delete</button> </div></div>`
-    //     cartaddeditems.append(c);
 
-    cartaddeditems.innerHTML = cartwithquantity.map((el)=>
-        {
+    cartaddeditems.innerHTML = cartwithquantity.map((el) => {
 
-            return(
-                `<div class="card col-lg-4 col-sm-10 col-md-4 px-0" ><img class="img-fluid" src="${el.imageUrl}" alt="Card image cap" /><div class="card-body"><h5 class="card-title"> ${el.name} </h5><h6 class="card-text priceClass"><span>&#x20b9;</span>${el.price}</h6><p class="quantityClass"> Quantity:${el.quantity} </p> <button class="delToCartBtn" id="${el.id}"  onclick='del(${el.id})'><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Delete</button> </div></div>`
-            );
-        }).join('');
+        return (
+            `<div class="card col-lg-4 col-sm-10 col-md-4 px-0" ><img class="img-fluid" src="${el.imageUrl}" alt="Card image cap" /><div class="card-body"><h5 class="card-title"> ${el.name} </h5><h6 class="card-text priceClass"><span>&#x20b9;</span>${el.price}</h6><p class="quantityClass"><button class="decreasequantity" onclick="decreasequant(${el.id})">-</button>&nbsp Quantity:${el.quantity} &nbsp<button class="addquantity" onclick="addquant(${el.id})">+</button> </p> <button class="delToCartBtn" id="${el.id}"  onclick='del(${el.id})'><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Delete</button> </div></div>`
+        );
+    }).join('');
 
 }
 
 
 
-const del=(idx)=>
-{
+const del = (idx) => {
     if (idx < 32) {
         menDataSet.forEach(function (el) {
             if (el.id === idx) {
 
-                const x=cart.indexOf(el);
-                const y=cart.splice(x,1);
-                const z=cartwithquantity.splice(x,1);
-                 
+                const x = cart.indexOf(el);
+                const y = cart.splice(x, 1);
+                const z = cartwithquantity.splice(x, 1);
+
             }
         });
     }
     if (idx > 100 && idx < 132) {
         womenDataSet.forEach(function (el) {
             if (el.id === idx) {
-                
-                const x=cart.indexOf(el);
-                const y=cart.splice(x,1);
-                const z=cartwithquantity.splice(x,1);
-              
-               
+
+                const x = cart.indexOf(el);
+                const y = cart.splice(x, 1);
+                const z = cartwithquantity.splice(x, 1);
+
+
             }
         });
     }
@@ -1254,40 +1237,80 @@ const del=(idx)=>
         kidDataSet.forEach(function (el) {
             if (el.id === idx) {
 
-                const x=cart.indexOf(el);
-                const y=cart.splice(x,1);
-                const z=cartwithquantity.splice(x,1);
-             
-             
+                const x = cart.indexOf(el);
+                const y = cart.splice(x, 1);
+                const z = cartwithquantity.splice(x, 1);
+
+
             }
         });
     }
     checkTotalPrice();
-     totalcartitems();
+    totalcartitems();
     displayincart();
 }
 
 var price;
 
 
-const totalPrice=document.querySelector('#totalPrice');
+const totalPrice = document.querySelector('#totalPrice');
 
- 
- const checkTotalPrice=()=>{
-    price=0;
+
+const checkTotalPrice = () => {
+    price = 0;
     cartwithquantity.forEach(function (el) {
-          price=price+(el.price*el.quantity);
+        price = price + (el.price * el.quantity);
     });
-     
-     totalPrice.innerHTML=`${price}`;
+
+    totalPrice.innerHTML = `${price}`;
 
 
- }
+}
+
+const addquant = (idx) => {
+    var index;
+    cart.forEach(function (el) {
+        if (el.id === idx) {
+            index = cart.indexOf(el);
+        }
+    });
+
+
+    cartwithquantity[index].quantity = cartwithquantity[index].quantity + 1;
+    displayincart();
+    checkTotalPrice();
+}
+
+const decreasequant = (idx) => {
+    var index;
+    cart.forEach(function (el) {
+        if (el.id === idx) {
+            index = cart.indexOf(el);
+        }
+    });
+    if (cartwithquantity[index].quantity > 1) {
+        cartwithquantity[index].quantity -= 1;
+    } else {
+        const aa = cart.splice(index, 1);
+        const bb = cartwithquantity.splice(index, 1);
+    }
+
+    displayincart();
+    checkTotalPrice();
+    totalcartitems();
+}
 
 
 
 
+const clearcart=()=>{
+       cart=[];
+       cartwithquantity=[];
+       displayincart();
+    checkTotalPrice();
+    totalcartitems();
 
+}
 
 
 
