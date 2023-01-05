@@ -999,6 +999,32 @@ const womenbtns = document.querySelectorAll(".womenbtn");
 const kidbtns = document.querySelectorAll(".kidbtn");
 const cartbtn = document.querySelector("#cartbtn");
 
+const cartemptypic=document.querySelector('.cartemptypic');
+const cart2ndpart=document.querySelector('.cart2ndpart');
+
+cart2ndpart.classList.add('d-none');
+
+
+const checkcartempty=()=>{
+    if(cart.length===0){
+        if(cartemptypic.classList.contains('d-none'))
+        {
+            cartemptypic.classList.remove('d-none');
+
+        }
+        cart2ndpart.classList.add('d-none');
+        
+        
+    }else{
+         if(cart2ndpart.classList.contains('d-none'))
+         {
+            cart2ndpart.classList.remove('d-none');
+         }
+         cartemptypic.classList.add('d-none');
+
+    }
+}
+
 
 homebtn.addEventListener('click', () => {
     if (homesection.classList.contains('d-none')) {
@@ -1116,8 +1142,6 @@ var cartwithquantity = [];
 
 
 
-// `add(${el.id},${el.itemType},${el.name},${el.imageUrl},${el.price},${el.rating})`
-
 
 
 const displaycartitems = document.querySelector('#cartitems');
@@ -1200,19 +1224,57 @@ const add = (idx) => {
     checkTotalPrice();
     totalcartitems();
     displayincart();
+    checkcartempty();
 }
 
 
 const cartaddeditems = document.querySelector('#cartaddeditems');
 
+// const displayincart = () => {
+
+
+//     cartaddeditems.innerHTML = cartwithquantity.map((el) => {
+
+//         return (
+//             `<div class="card col-lg-4 col-sm-10 col-md-4 px-0" ><img class="img-fluid" src="${el.imageUrl}" alt="Card image cap" /><div class="card-body"><h5 class="card-title"> ${el.name} </h5><h6 class="card-text priceClass"><span>&#x20b9;</span>${el.price}</h6><p class="quantityClass"><button class="decreasequantity" onclick="decreasequant(${el.id})">-</button>&nbsp Quantity:${el.quantity} &nbsp<button class="addquantity" onclick="addquant(${el.id})">+</button> </p> <button class="delToCartBtn" id="${el.id}"  onclick='del(${el.id})'><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Delete</button> </div></div>`
+//         );
+//     }).join('');
+
+// }
+
 const displayincart = () => {
 
 
-    cartaddeditems.innerHTML = cartwithquantity.map((el) => {
+    cartaddeditems.innerHTML = `<div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>`+cartwithquantity.map((el) => {
 
         return (
-            `<div class="card col-lg-4 col-sm-10 col-md-4 px-0" ><img class="img-fluid" src="${el.imageUrl}" alt="Card image cap" /><div class="card-body"><h5 class="card-title"> ${el.name} </h5><h6 class="card-text priceClass"><span>&#x20b9;</span>${el.price}</h6><p class="quantityClass"><button class="decreasequantity" onclick="decreasequant(${el.id})">-</button>&nbsp Quantity:${el.quantity} &nbsp<button class="addquantity" onclick="addquant(${el.id})">+</button> </p> <button class="delToCartBtn" id="${el.id}"  onclick='del(${el.id})'><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Delete</button> </div></div>`
-        );
+           // `<div class="card col-lg-4 col-sm-10 col-md-4 px-0" ><img class="img-fluid" src="${el.imageUrl}" alt="Card image cap" /><div class="card-body"><h5 class="card-title"> ${el.name} </h5><h6 class="card-text priceClass"><span>&#x20b9;</span>${el.price}</h6><p class="quantityClass"><button class="decreasequantity" onclick="decreasequant(${el.id})">-</button>&nbsp Quantity:${el.quantity} &nbsp<button class="addquantity" onclick="addquant(${el.id})">+</button> </p> <button class="delToCartBtn" id="${el.id}"  onclick='del(${el.id})'><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp;Delete</button> </div></div>`
+        `<div class="product">
+        <div class="product-image">
+          <img src="${el.imageUrl}">
+        </div>
+        <div class="product-details">
+          <div class="product-title"> ${el.name}</div>
+          
+        </div>
+        <div class="product-price"><span>&#x20b9;</span>${el.price}</div>
+        <div class="product-quantity">
+          
+            <p class="quantityClass"><button class="decreasequantity" onclick="decreasequant(${el.id})">-</button>&nbsp${el.quantity}&nbsp<button class="addquantity" onclick="addquant(${el.id})">+</button> </p> 
+        </div>
+        <div class="product-removal">
+         <button class="delToCartBtn" id="${el.id}"  onclick='del(${el.id})'><i class="fa-solid fa-trash"></i></button> 
+        </div>
+        <div class="product-line-price">&#x20b9;${el.price*el.quantity}</div>
+      </div>`
+           );
     }).join('');
 
 }
@@ -1258,6 +1320,7 @@ const del = (idx) => {
     checkTotalPrice();
     totalcartitems();
     displayincart();
+    checkcartempty();
 }
 
 var price;
@@ -1289,6 +1352,7 @@ const addquant = (idx) => {
     cartwithquantity[index].quantity = cartwithquantity[index].quantity + 1;
     displayincart();
     checkTotalPrice();
+
 }
 
 const decreasequant = (idx) => {
@@ -1308,6 +1372,7 @@ const decreasequant = (idx) => {
     displayincart();
     checkTotalPrice();
     totalcartitems();
+    checkcartempty();
 }
 
 
@@ -1319,9 +1384,24 @@ const clearcart=()=>{
        displayincart();
     checkTotalPrice();
     totalcartitems();
+    checkcartempty();
 
 }
 
 
-
+menbtns.forEach(function(el){
+    el.addEventListener('click',()=>{
+        window.scrollTo(0,0);
+    })
+});
+womenbtns.forEach(function(el){
+    el.addEventListener('click',()=>{
+        window.scrollTo(0,0);
+    })
+})
+kidbtns.forEach(function(el){
+    el.addEventListener('click',()=>{
+        window.scrollTo(0,0);
+    })
+})
 
